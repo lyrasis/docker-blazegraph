@@ -1,0 +1,31 @@
+---
+
+# ansible-playbook -i 'localhost,' build.yml --extra-vars="config_file=vars/1.5.1.yml output_directory=1.5.1"
+
+- name: build blazegraph dockerfiles
+  hosts: localhost
+  connection: local
+  sudo: no
+
+  vars:
+    # set default config
+    config_file: vars/latest.yml
+    # set default output directory
+    output_directory: latest
+
+  tasks:
+    - name: include the config file
+      include_vars: "{{ config_file }}"
+
+    - name: create the config output directory
+      file:
+        path: "{{ output_directory }}"
+        state: directory
+
+    - name: create the Dockerfile and RWStore
+      template:
+        src: "templates/{{ item }}.j2"
+        dest: "{{ output_directory }}/{{ item }}"
+      with_items:
+        - Dockerfile
+        - RWStore.properties
