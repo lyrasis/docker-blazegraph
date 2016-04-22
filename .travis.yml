@@ -1,0 +1,20 @@
+---
+
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+install:
+  - docker build -t blazegraph:1.5.3 1.5.3/
+  - docker run --name blazegraph -d -p 8080:8080 blazegraph:1.5.3
+
+before_script:
+  - sleep 30
+
+script:
+  - docker ps | grep blazegraph
+  - curl http://localhost:8080/bigdata/#query
+
