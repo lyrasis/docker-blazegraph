@@ -13,4 +13,4 @@ ADD RWStore.properties $BLAZEGRAPH_RW_PATH
 RUN wget -O ${JETTY_WEBAPPS}/${BLAZEGRAPH_NAME}.war $BLAZEGRAPH_VERSION_URL
 RUN chown jetty:jetty $BLAZEGRAPH_RW_PATH
 
-CMD ["java","-Dcom.bigdata.rdf.sail.webapp.ConfigParams.propertyFile=/RWStore.properties","-jar","/usr/local/jetty/start.jar"]
+CMD ["-Dcom.bigdata.rdf.sail.webapp.ConfigParams.propertyFile=/RWStore.properties"]
