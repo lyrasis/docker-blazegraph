@@ -1,6 +1,6 @@
 FROM jetty:9.4.2-jre8-alpine
 
-MAINTAINER kevin@enchartus.ca
+LABEL authors="mark.cooper@lyrasis.org,kevin@enchartus.ca"
 
 ENV JETTY_WEBAPPS /var/lib/jetty/webapps
 ENV BLAZEGRAPH_NAME bigdata
