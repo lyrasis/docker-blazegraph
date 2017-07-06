@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> 
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"> 
+<properties>
+    <entry key="namespace">kb</entry> 
+    <entry key="propertyFile">/RWStore.properties</entry> 
+    <entry key="fileOrDirs">/data</entry>
+    <entry key="format">rdf/xml</entry>
+    <entry key="quiet">false</entry> 
+    <entry key="verbose">0</entry> 
+    <entry key="closure">false</entry> 
+    <entry key="durableQueues">true</entry> 
+</properties>
