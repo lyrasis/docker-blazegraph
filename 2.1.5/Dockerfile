@@ -32,4 +32,4 @@ USER jetty
 # problem if rules.log is not found:
 # https://wiki.blazegraph.com/wiki/index.php/NanoSparqlServer#Common_Startup_Problems
 WORKDIR /var/lib/jetty
-CMD java $JAVA_OPTS -jar /usr/local/jetty/start.jar -Dcom.bigdata.rdf.sail.webapp.ConfigParams.propertyFile=/RWStore.properties
+CMD java $JAVA_OPTS -Dcom.bigdata.rdf.sail.webapp.ConfigParams.propertyFile=/RWStore.properties -jar /usr/local/jetty/start.jar
