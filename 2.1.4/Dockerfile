@@ -1,4 +1,4 @@
-FROM jetty:9.4.2-jre8-alpine
+FROM jetty:9-jre8-alpine
 
 LABEL authors="mark.cooper@lyrasis.org,kevin@enchartus.ca"
 
@@ -7,9 +7,11 @@ ENV BLAZEGRAPH_NAME bigdata
 ENV BLAZEGRAPH_RW_PATH /RWStore.properties
 ENV BLAZEGRAPH_VERSION 2_1_4
 ENV BLAZEGRAPH_VERSION_URL https://github.com/blazegraph/database/releases/download/BLAZEGRAPH_RELEASE_${BLAZEGRAPH_VERSION}/blazegraph.war
+ENV JAVA_OPTS "-Xmx1g"
 
 ADD RWStore.properties $BLAZEGRAPH_RW_PATH
 
+USER root
 RUN apk --no-cache add openssl
 
 RUN wget -O ${JETTY_WEBAPPS}/${BLAZEGRAPH_NAME}.war $BLAZEGRAPH_VERSION_URL
@@ -29,4 +31,4 @@ USER jetty
 # The blazegraph docs also hint about wrong startup folder being a possible
 # problem if rules.log is not found:
 # https://wiki.blazegraph.com/wiki/index.php/NanoSparqlServer#Common_Startup_Problems
-CMD cd /var/lib/jetty && java -jar /usr/local/jetty/start.jar -Dcom.bigdata.rdf.sail.webapp.ConfigParams.propertyFile=/RWStore.properties
+CMD cd /var/lib/jetty && java $JAVA_OPTS -Dcom.bigdata.rdf.sail.webapp.ConfigParams.propertyFile=/RWStore.properties -jar /usr/local/jetty/start.jar
