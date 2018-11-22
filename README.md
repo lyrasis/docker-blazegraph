@@ -26,8 +26,14 @@ Files or directories need to be made available to the container:
 mkdir -p /tmp/blazegraph/data/
 cp data/authoritieschildrensSubjects.nt /tmp/blazegraph/data/
 
+# set uid / gid for container, example is ubuntu primary user compatible
+BLAZEGRAPH_UID=$UID
+BLAZEGRAPH_GID=$GROUPS
+
 # start container making files available under /data
 docker run --name blazegraph -d \
+  -e BLAZEGRAPH_UID=$BLAZEGRAPH_UID \
+  -e BLAZEGRAPH_GID=$BLAZEGRAPH_GID \
   -p 8889:8080 \
   -v $PWD/data/RWStore.properties:/RWStore.properties \
   -v /tmp/blazegraph/data/:/data \
