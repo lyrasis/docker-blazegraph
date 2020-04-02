@@ -19,6 +19,7 @@ USER root
 RUN apk add --no-cache openssl && \
     apk add --no-cache bash && \
     apk add --no-cache su-exec && \
+    apk add --no-cache curl && \
     wget -O ${JETTY_WEBAPPS}/${BLAZEGRAPH_NAME}.war $BLAZEGRAPH_VERSION_URL && \ 
     chmod +x /var/lib/jetty/entrypoint.sh
 
